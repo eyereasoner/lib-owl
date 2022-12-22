@@ -1,0 +1,15 @@
+@prefix :    <http://example.org/ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+:Alice :hasParent :Mary .
+
+:hasChild owl:inverseOf :hasParent .
+
+# Test
+{
+    :Mary :hasChild :Alice .
+}
+=>
+{
+    <> :is true .
+} .
