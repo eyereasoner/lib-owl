@@ -1,0 +1,15 @@
+@prefix :    <http://example.org/ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:Alice :hasParent :Mary .
+
+:hasChild owl:inverseOf :hasParent .
+
+# Test
+() log:onNegativeSurface {
+    :Mary :hasChild :Alice . 
+    () log:onNegativeSurface {
+        <> :is true .
+    } .
+} .

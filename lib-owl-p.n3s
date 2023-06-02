@@ -1,0 +1,211 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> . 
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+<> 
+    dct:hasVersion "0.2" ;
+    dct:description "An owl-p components library in RDF Surfaces". 
+
+(_:S _:P _:O) log:onNegativeSurface {
+    _:S _:P _:O .
+    () log:onNegativeSurface {
+        _:S owl:sameAs _:S .
+        _:P owl:sameAs _:P .
+        _:O owl:sameAs _:O .
+    } .
+} .
+
+(_:S _:O) log:onNegativeSurface {
+    _:S owl:sameAs _:O .
+    () log:onNegativeSurface {
+        _:O owl:sameAs _:S .
+    } .
+} .
+
+(_:S _:P _:Q _:R) log:onNegativeSurface {
+    _:Q owl:sameAs _:R .
+    _:R owl:sameAs _:P .
+    () log:onNegativeSurface {
+        _:Q owl:sameAs _:P .
+    } .
+} .
+
+(_:S _:P _:O _:S2) log:onNegativeSurface {
+    _:S owl:sameAs _:S2 .
+    _:S _:P _:O .
+    () log:onNegativeSurface {
+        _:S2 _:P _:O .
+    } .
+} .
+
+(_:S _:P _:O _:P2) log:onNegativeSurface {
+    _:P owl:sameAs _:P2 .
+    _:S _:P _:O .
+    () log:onNegativeSurface {
+        _:S _:P2 _:O .
+    } .
+} .
+
+(_:S _:P _:O _:O2) log:onNegativeSurface {
+    _:O owl:sameAs _:O2 .
+    _:S _:P _:O .
+    () log:onNegativeSurface {
+        _:S _:P _:O2 .
+    }
+} .
+
+(_:Q _:R) log:onNegativeSurface {
+    _:Q owl:sameAs _:R .
+    _:Q owl:differentFrom _:R .
+    () log:onNegativeSurface {} .
+} .
+
+(_:P1 _:P2 _:Q _:R) log:onNegativeSurface {
+    _:P1 owl:equivalentProperty _:P2 .
+    _:Q _:P1 _:R .
+    () log:onNegativeSurface {
+            _:Q _:P2 _:R .
+    } .
+} .
+
+(_:P1 _:P2 _:Q _:R) log:onNegativeSurface {
+    _:P1 owl:equivalentProperty _:P2 .
+    _:Q _:P2 _:R .
+    () log:onNegativeSurface {
+        _:Q _:P1 _:R .
+    } .
+} .
+
+(_:P1 _:P2 _:Q _:R) log:onNegativeSurface {
+    _:P1 owl:inverseOf _:P2 .
+    _:Q _:P1 _:R .
+    () log:onNegativeSurface {
+        _:R _:P2 _:Q .
+    } .
+} .
+
+(_:P1 _:P2 _:Q _:R) log:onNegativeSurface {
+    _:P1 owl:inverseOf ?P2 .
+    _:Q _:P2 _:R .
+    () log:onNegativeSurface {
+        _:R _:P1 _:Q .
+    } .
+} .
+
+(_:P _:X _:Y1 _:Y2) log:onNegativeSurface {
+    _:P rdf:type owl:FunctionalProperty .
+    _:X _:P _:Y1 .
+    _:X _:P _:Y2 .
+    () log:onNegativeSurface {
+        _:Y1 owl:sameAs _:Y2 .
+    } .
+} .
+
+(_:P _:X1 _:X2 _:Y) log:onNegativeSurface {
+    _:P rdf:type owl:InverseFunctionalProperty .
+    _:X1 _:P _:Y .
+    _:X2 _:P _:Y .
+    () log:onNegativeSurface {
+        _:X1 owl:sameAs _:X2 .
+    } .
+} .
+
+(_:P _:X _:Y) log:onNegativeSurface {
+    _:P rdf:type owl:SymmetricProperty .
+    _:X _:P _:Y .
+    () log:onNegativeSurface {
+        _:Y _:P _:X .
+    } .
+} .
+
+(_:P _:X _:Y _:Z) log:onNegativeSurface {
+    _:P rdf:type owl:TransitiveProperty .
+    _:X _:P _:Y .
+    _:Y _:P _:Z .
+    () log:onNegativeSurface {
+        _:X _:P _:Z .
+    } .
+} .
+
+(_:A _:B _:X) log:onNegativeSurface {
+    _:A owl:equivalentClass _:B .
+    _:X rdf:type _:A .
+    () log:onNegativeSurface {
+        _:X rdf:type _:B .
+    } .
+} .
+
+(_:A _:B _:X) log:onNegativeSurface {
+    _:A owl:equivalentClass _:B .
+    _:X rdf:type _:B .
+    () log:onNegativeSurface {
+        _:X rdf:type _:A .
+    } .
+} .
+
+(_:A _:B _:X) log:onNegativeSurface {
+    _:A owl:disjointWith _:B .
+    _:X rdf:type _:A .
+    _:X rdf:type _:B .
+    () log:onNegativeSurface { } .
+} .
+
+(_:C) log:onNegativeSurface {
+    _:C rdf:type owl:Class .
+    () log:onNegativeSurface {
+        _:C rdfs:subClassOf _:C .
+        _:C rdfs:subClassOf owl:Thing .
+        _:C owl:equivalentClass _:C .
+        owl:Nothing rdfs:subClassOf _:C .
+    } .
+} .
+
+(_:A _:B) log:onNegativeSurface {
+    _:A owl:equivalentClass _:B .
+    () log:onNegativeSurface {
+        _:A rdfs:subClassOf _:B .
+        _:B rdfs:subClassOf _:A .
+    } .
+} .
+
+(_:A _:B) log:onNegativeSurface {
+    _:A rdfs:subClassOf _:B .
+    _:B rdfs:subClassOf _:A .
+    () log:onNegativeSurface {
+        _:A owl:equivalentClass _:B .
+    } .
+} .
+
+(_:P) log:onNegativeSurface {
+    _:P rdf:type owl:ObjectProperty .
+    () log:onNegativeSurface {
+        _:P rdfs:subPropertyOf _:P .
+        _:P owl:equivalentProperty _:P .
+    } .
+} .
+
+(_:P) log:onNegativeSurface {
+    _:P rdf:type owl:DatatypeProperty .
+    () log:onNegativeSurface {
+        _:P rdfs:subPropertyOf _:P .
+        _:P owl:equivalentProperty _:P .
+    } .
+} .
+
+(_:P _:R) log:onNegativeSurface {
+    _:P owl:equivalentProperty _:R .
+    () log:onNegativeSurface {
+        _:P rdfs:subPropertyOf _:R .
+        _:R rdfs:subPropertyOf _:P .
+    } .
+} .
+
+(_:P _:R) log:onNegativeSurface {
+    _:P rdfs:subPropertyOf _:R .
+    _:R rdfs:subPropertyOf _:P .
+    () log:onNegativeSurface {
+        _:P owl:equivalentProperty _:R .
+    } .
+} .

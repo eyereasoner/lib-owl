@@ -50,7 +50,6 @@ eye --nope --quiet --pass lib-owl-p.n3 your-file.n3
 - [owl:ObjectProperty](https://www.w3.org/TR/2004/REC-owl-guide-20040210/#owl_ObjectProperty)
 - [owl:DatatypeProperty](https://www.w3.org/TR/2004/REC-owl-guide-20040210/#owl_DatatypeProperty)
 
-
 # Dependencies
 
 NONE
