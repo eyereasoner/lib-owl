@@ -9,7 +9,7 @@
 # Test
 () log:onQuerySurface {
     :Mary :hasChild :Alice . 
-    () log:onQuerySurface {
+    () log:onAnswerSurface {
         <> :is true .
     } .
 } .

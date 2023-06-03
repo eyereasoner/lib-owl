@@ -9,7 +9,7 @@ test:
 	eye --nope --quiet --pass lib-owl-p.n3 t/*.n3
 
 test-blogic:
-	eye --quiet --blogic lib-owl-p.n3 t/*.n3s
+	eye --nope --quiet --blogic lib-owl-p.n3 t/*.n3s
 
 owl:
 	cp /Users/hochsten/github.com/eyereasoner/eye/reasoning/rpo/owl-*.n3 .
