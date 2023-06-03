@@ -59,7 +59,6 @@
 (_:Q _:R) log:onNegativeSurface {
     _:Q owl:sameAs _:R .
     _:Q owl:differentFrom _:R .
-    () log:onNegativeSurface {} .
 } .
 
 (_:P1 _:P2 _:Q _:R) log:onNegativeSurface {
@@ -149,7 +148,6 @@
     _:A owl:disjointWith _:B .
     _:X rdf:type _:A .
     _:X rdf:type _:B .
-    () log:onNegativeSurface { } .
 } .
 
 (_:C) log:onNegativeSurface {
