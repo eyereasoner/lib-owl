@@ -1,0 +1,617 @@
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix dct: <http://purl.org/dc/terms/> . 
+
+<> 
+    dct:hasVersion "0.2" ;
+    dct:description "An owl-e components library in RDF Surfaces". 
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A a owl:AllDifferent .
+    _:A owl:members _:B .
+    _:C list:in _:B .
+    _:D list:in _:B .
+    _:C log:notEqualTo _:D .
+    _:C owl:sameAs _:D .
+} .  
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A a owl:AllDifferent .
+    _:A owl:distinctMembers _:B .
+    _:C list:in _:B .
+    _:D list:in _:B .
+    _:C log:notEqualTo _:D .
+    _:C owl:sameAs _:D .
+} .
+
+(_:A _:B _:C _:D _:E) log:onNegativeSurface {
+    _:A a owl:AllDisjointClasses .
+    _:A owl:members _:B .
+    _:C list:in _:B .
+    _:D list:in _:B .
+    _:C log:notEqualTo _:D .
+    _:E a _:C .
+    _:E a _:D . 
+} .
+
+(_:A _:B _:C _:D _:E _:F) log:onNegativeSurface {
+    _:A a owl:AllDisjointProperties .
+    _:A owl:members _:B .
+    _:C list:in _:B .
+    _:D list:in _:B .
+    _:C log:notEqualTo _:D .
+    _:E _:C _:F .
+    _:E _:D _:F . 
+} .
+
+(_:A _:B _:C) log:onNegativeSurface {
+    _:A a owl:AsymmetricProperty .
+    _:B _:A _:C .
+    _:C _:A _:B .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A a owl:FunctionalProperty .
+    _:B _:A _:C .
+    _:B _:A _:D .
+    () log:onNegativeSurface {
+        _:C owl:sameAs _:D .
+    }
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A a owl:FunctionalProperty .
+    _:B _:A _:C .
+    _:B _:A _:D .
+    _:C owl:differentFrom _:D .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A a owl:InverseFunctionalProperty .
+    _:B _:A _:C .
+    _:D _:A _:C .
+    () log:onNegativeSurface {
+        _:B owl:sameAs _:D .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A a owl:InverseFunctionalProperty .
+    _:B _:A _:C .
+    _:D _:A _:C .
+    _:B owl:differentFrom _:D .
+} .
+
+(_:A _:B) log:onNegativeSurface {
+    _:A a owl:IrreflexiveProperty . 
+    _:B _:A _:B .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:sourceIndividual _:B .
+    _:A owl:assertionProperty _:C .
+    _:A owl:targetIndividual _:D .
+    _:B _:C _:D .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:sourceIndividual _:B .
+    _:A owl:assertionProperty _:C .
+    _:A owl:targetValue _:D .
+    _:B _:C _:D .
+} .
+
+(_:A) log:onNegativeSurface {
+    _:A a owl:Nothing .
+} .
+
+(_:A _:B _:C) log:onNegativeSurface {
+    _:B a owl:SymmetricProperty .
+    _:A _:B _:C .
+    () log:onNegativeSurface {
+        _:C _:B _:A .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:B a owl:TransitiveProperty .
+    _:A _:B _:C .
+    _:C _:B _:D .
+    () log:onNegativeSurface {
+        _:A _:B _:D .
+    } .
+} .
+
+(_:A _:B _:C _:D _:E) log:onNegativeSurface {
+    _:A owl:allValuesFrom _:B .
+    _:A owl:onProperty _:C .
+    _:D a _:A .
+    _:D _:C _:E .
+    () log:onNegativeSurface {
+        _:E a _:B .
+    } .
+} .
+
+(_:A _:B _:C _:D _:E) log:onNegativeSurface {
+    _:A owl:allValuesFrom _:B .
+    _:A owl:onProperty _:C .
+    _:D owl:allValuesFrom _:E .
+    _:D owl:onProperty _:C .
+    _:B rdfs:subClassOf _:E .
+    () log:onNegativeSurface {
+        _:A rdfs:subClassOf _:D .
+    } .
+} .
+
+(_:A _:B _:C _:D _:E) log:onNegativeSurface {
+    _:A owl:allValuesFrom _:B .
+    _:A owl:onProperty _:C .
+    _:D owl:allValuesFrom _:B .
+    _:D owl:onProperty _:E .
+    _:C rdfs:subPropertyOf _:E .
+    () log:onNegativeSurface {
+        _:A rdfs:subClassOf _:D .
+    } .
+} .
+
+(_:A _:B) log:onNegativeSurface {
+    _:A owl:complementOf _:B .
+    () log:onNegativeSurface {
+        _:B owl:complementOf _:A .
+    } .
+} .
+
+(_:A _:B) log:onNegativeSurface {
+    _:A owl:complementOf _:B .
+    () log:onNegativeSurface {
+        _:B owl:disjointWith _:A .
+    } .
+} .
+
+(_:A _:B _:C) log:onNegativeSurface {
+    _:A owl:complementOf _:B .
+    _:C a _:A .
+    _:C a _:B .
+} .
+
+(_:A _:B) log:onNegativeSurface {
+    _:A owl:differentFrom _:B .
+    () log:onNegativeSurface {
+        _:B owl:differentFrom _:A .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:disjointUnionOf _:B .
+    _:C list:in _:B .
+    _:D list:in _:B .
+    _:C log:notEqualTo _:D .
+    () log:onNegativeSurface {
+        _:C owl:disjointWith _:D .
+        _:A owl:unionOf _:B.
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:disjointWith _:B .
+    _:C a _:A .
+    _:D a _:B .
+    () log:onNegativeSurface {
+        _:C owl:differentFrom _:D .
+    } .
+} .
+
+(_:A _:B _:C) log:onNegativeSurface {
+    _:A owl:disjointWith _:B .
+    _:C a _:A .
+    _:C a _:B .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:distinctMembers _:B .
+    _:C list:in _:B .
+    _:D list:in _:B .
+    _:C log:notEqualTo _:D .
+    () log:onNegativeSurface {
+        _:C owl:differentFrom _:D .
+    }
+} .
+
+(_:A _:B _:C) log:onNegativeSurface {
+    _:A owl:equivalentClass _:B .
+    _:C a _:A .
+    () log:onNegativeSurface {
+        _:C a _:B .
+    } .
+} .
+
+(_:A _:B _:C) log:onNegativeSurface {
+    _:A owl:equivalentClass _:B .
+    _:C a _:B .
+    () log:onNegativeSurface {
+        _:C a _:A .
+    } . 
+} .
+
+(_:A _:B) log:onNegativeSurface {
+    _:A owl:equivalentClass _:B .
+    () log:onNegativeSurface {
+        _:B owl:equivalentClass _:A .
+    } .
+} .
+
+(_:A _:B _:C) log:onNegativeSurface {
+    _:A owl:equivalentClass _:B .
+    _:B owl:equivalentClass _:C .
+    () log:onNegativeSurface {
+        _:A owl:equivalentClass _:C .
+    } .
+} .
+
+(_:A _:B) log:onNegativeSurface {
+    _:A owl:equivalentClass _:B .
+    () log:onNegativeSurface {
+        _:A rdfs:subClassOf _:B .
+        _:B rdfs:subClassOf _:A .
+    } .
+} .
+
+(_:A _:B) log:onNegativeSurface {
+    _:A rdfs:subClassOf _:B .
+    _:B rdfs:subClassOf _:A .
+    () log:onNegativeSurface {
+        _:A owl:equivalentClass _:B .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:equivalentProperty _:B .
+    _:C _:A _:D .
+    () log:onNegativeSurface {
+        _:C _:B _:D .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:equivalentProperty _:B .
+    _:C _:B _:D .
+    () log:onNegativeSurface {
+        _:C _:A _:D .
+    } .
+} .
+
+(_:A _:B) log:onNegativeSurface {
+    _:A owl:equivalentProperty _:B .
+    () log:onNegativeSurface {
+        _:B owl:equivalentProperty _:A .
+    } .
+} .
+
+(_:A _:B _:C) log:onNegativeSurface {
+    _:A owl:equivalentProperty _:B .
+    _:B owl:equivalentProperty _:C .
+    () log:onNegativeSurface {
+        _:A owl:equivalentProperty _:C .
+    } .
+} .
+
+(_:A _:B) log:onNegativeSurface {
+    _:A owl:equivalentProperty _:B .
+    () log:onNegativeSurface {
+        _:A rdfs:subPropertyOf _:B .
+        _:B rdfs:subPropertyOf _:A .
+    } .
+} .
+
+(_:A _:B) log:onNegativeSurface {
+    _:A rdfs:subPropertyOf _:B .
+    _:B rdfs:subPropertyOf _:A .
+    () log:onNegativeSurface {
+        _:A owl:equivalentProperty _:B .
+    } .
+} .
+
+(_:A _:B _:C _:D _:E _:F _:G _:H) log:onNegativeSurface {
+    _:A owl:hasKey _:B .
+    _:C a _:A .
+    _:D a _:A .
+    _:C log:notEqualTo _:D .
+    ( _:E {
+        _:E list:in _:B .
+        _:C _:E _:F .
+        _:D _:E _:F .
+    } _:G ) log:collectAllIn _:H .
+    _:G list:setEqualTo _:B .
+    () log:onNegativeSurface {
+        _:C owl:sameAs _:D .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:hasValue _:B .
+    _:A owl:onProperty _:C .
+    _:D a _:A.
+    () log:onNegativeSurface {
+        _:D _:C _:B .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:hasValue _:B .
+    _:A owl:onProperty _:C .
+    _:D _:C _:B .
+    () log:onNegativeSurface {
+        _:D a _:A .
+    } .
+} .
+
+(_:A _:B _:C _:D _:E) log:onNegativeSurface {
+    _:A owl:hasValue _:B .
+    _:A owl:onProperty _:C .
+    _:D owl:hasValue _:B .
+    _:D owl:onProperty _:E .
+    _:C rdfs:subPropertyOf _:E .
+    () log:onNegativeSurface {
+        _:A rdfs:subClassOf _:D .
+    } .
+} .
+
+(_:A _:B _:C _:D _:E _:F) log:onNegativeSurface {
+    _:A owl:hasValue _:B .
+    _:A owl:onProperty _:C .
+    _:D _:C _:E .
+    _:D a _:A .
+    _:B owl:differentFrom _:E .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:intersectionOf _:B .
+    _:C a _:A .
+    _:D list:in _:B .
+    () log:onNegativeSurface {
+        _:C a _:D .
+    } .
+} .
+
+(_:A _:B _:C _:D _:E _:F _:G) log:onNegativeSurface {
+    _:A owl:intersectionOf _:B .
+    _:B rdf:first _:C .
+    _:D a _:C .
+    _:B rdf:rest _:E .
+    _:F e:findall ( _:G {
+        _:G list:in _:E .
+        _:D a _:G .
+    } _:E) .
+    () log:onNegativeSurface {
+        _:D a _:A .
+    } .
+} .
+
+(_:A _:B _:C) log:onNegativeSurface {
+    _:A owl:intersectionOf _:B .
+    _:C list:in _:B .
+    () log:onNegativeSurface {
+        _:A rdfs:subClassOf _:C .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:inverseOf _:B .
+    _:C _:A _:D .
+    () log:onNegativeSurface {
+        _:D _:B _:C .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:inverseOf _:B .
+    _:C _:B _:D .
+    () log:onNegativeSurface {
+        _:D _:A _:C .
+    } .
+} .
+
+(_:A _:B) log:onNegativeSurface {
+    _:A owl:inverseOf _:B .
+    () log:onNegativeSurface {
+        _:B owl:inverseOf _:A .
+    } .
+} .
+
+(_:A _:B _:C _:D _:E) log:onNegativeSurface {
+    _:A owl:maxCardinality 1 .
+    _:A owl:onProperty _:B .
+    _:C a _:A .
+    _:C _:B _:D .
+    _:C _:B _:E .
+    () log:onNegativeSurface {
+        _:D owl:sameAs _:E .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:maxCardinality 0 .
+    _:A owl:onProperty _:B .
+    _:C _:B _:D .
+    _:C a _:A .
+} .
+
+(_:A _:B _:C _:D _:E) log:onNegativeSurface {
+    _:A owl:maxCardinality 1 .
+    _:A owl:onProperty _:B .
+    _:C _:B _:D .
+    _:C _:B _:E .
+    _:C a _:A .
+    _:E owl:differentFrom _:D .
+} .
+
+(_:A _:B _:C _:D _:E) log:onNegativeSurface {
+    _:A owl:maxQualifiedCardinality 1 .
+    _:A owl:onProperty _:B .
+    _:A owl:onClass _:C .
+    _:D a _:A .
+    _:D _:B _:E .
+    _:E a _:C .
+    _:D _:B _:F .
+    _:F a _:C .
+    () log:onNegativeSurface {
+        _:E owl:sameAs _:F .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:maxQualifiedCardinality 1 .
+    _:A owl:onProperty _:B .
+    _:A owl:onClass owl:Thing .
+    _:C a _:A .
+    _:C _:B _:D .
+    _:C _:B _:E .
+    () log:onNegativeSurface {
+        _:D owl:sameAs _:E .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:maxQualifiedCardinality 0 .
+    _:A owl:onProperty _:B .
+    _:A owl:onClass _:A .
+    _:C a _:A .
+    _:C _:B _:D .
+    _:D a _:A .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:maxQualifiedCardinality 1 .
+    _:A owl:onProperty _:B .
+    _:A owl:onClass owl:Thing .
+    _:C a _:A .
+    _:C _:B _:D .
+} .
+
+(_:A _:B _:C) log:onNegativeSurface {
+    _:A owl:oneOf _:B .
+    _:C list:in _:B .
+    () log:onNegativeSurface {
+        _:C a _:A .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:propertyChainAxiom _:B .
+    _:B e:propertyChainExtension (_:C _:D) .
+    () log:onNegativeSurface {
+        _:C _:A _:D .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:propertyDisjointWith _:B .
+    _:C _:A _:D .
+    _:C _:B _:D .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    _:A _:C _:D .
+    () log:onNegativeSurface {
+        _:B _:C _:D .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    _:C _:A _:D .
+    () log:onNegativeSurface {
+        _:C _:B _:D .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    _:D _:C _:A .
+    () log:onNegativeSurface {
+        _:D _:C _:B .
+    } .
+} .
+
+(_:A _:B) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    () log:onNegativeSurface {
+        _:B owl:sameAs _:A .
+    } .
+} .
+
+(_:A _:B _:C) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    _:B owl:sameAs _:C .
+    () log:onNegativeSurface {
+        _:A owl:sameAs _:C .
+    } .
+} .
+
+(_:A _:B _:C) log:onNegativeSurface {
+    _:A owl:sameAs _:B .
+    _:A owl:differentFrom _:B .
+} .
+
+(_:A _:B _:C _:D _:E) log:onNegativeSurface {
+    _:A owl:someValuesFrom _:B .
+    _:A owl:onProperty _:C .
+    _:D _:C _:E .
+    _:E a _:B .
+    () log:onNegativeSurface {
+        _:D a _:A .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:someValuesFrom owl:Thing .
+    _:A owl:onProperty _:B .
+    _:C _:B _:D .
+    () log:onNegativeSurface {
+        _:C a _:A .
+    } .
+} .
+
+(_:A _:B _:C _:D _:E) log:onNegativeSurface {
+    _:A owl:someValuesFrom _:B .
+    _:A owl:onProperty _:C .
+    _:D owl:someValuesFrom _:E .
+    _:D owl:onProperty _:C .
+    _:B rdfs:subClassOf _:E .
+    () log:onNegativeSurface {
+        _:A rdfs:subClassOf _:D .
+    } .
+} .
+
+(_:A _:B _:C _:D _:E) log:onNegativeSurface {
+    _:A owl:someValuesFrom _:B .
+    _:A owl:onProperty _:C .
+    _:D owl:someValuesFrom _:B .
+    _:D owl:onProperty _:E .
+    _:C rdf:subPropertyOf _:E .
+    () log:onNegativeSurface {
+        _:A rdfs:subClassOf _:D .
+    } .
+} .
+
+(_:A _:B _:C _:D) log:onNegativeSurface {
+    _:A owl:unionOf _:B .
+    _:C list:in _:B .
+    _:D a _:C .
+    () log:onNegativeSurface {
+        _:D a _:A .
+    } .
+} .
+
+(_:A _:B _:C) log:onNegativeSurface {
+    _:A owl:unionOf _:B .
+    _:C list:in _:B .
+    () log:onNegativeSurface {
+        _:C rdfs:subClassOf _:A .
+    } .
+} .
