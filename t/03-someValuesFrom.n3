@@ -1,0 +1,20 @@
+@prefix :    <http://example.org/ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:PresidentChild 
+    a owl:Restriction ;
+    owl:onProperty :hasParent ;
+    owl:someValuesFrom :President .
+
+:Chelsea :hasParent :Bill .
+:Bill a :President .
+
+# test
+{
+    :Chelsea a :PresidentChild .
+}
+=>
+{
+    <> :is true .
+} .

@@ -1,0 +1,20 @@
+@prefix :    <http://example.org/ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:husband
+    a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:domain :Woman ;
+    rdfs:range :Man .
+
+:Jane :husband :Bill .
+
+# test
+{
+    :Jane a :Woman .
+}
+=> 
+{ 
+    <> :is true .
+} .
