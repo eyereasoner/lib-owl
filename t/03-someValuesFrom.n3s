@@ -17,7 +17,3 @@
         <> :is true .
     } .
 } .
-
-(_:A _:B) log:onQuerySurface {
-    _:A a _:B .
-} .

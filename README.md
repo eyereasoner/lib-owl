@@ -94,4 +94,4 @@ eye --nope --quiet --pass lib-owl-p.n3 your-file.n3
 
 # Dependencies
 
-NONE
+lib-rdfs
