@@ -6,10 +6,10 @@ help:
 		@echo "make owl"
 
 test:
-	eye --nope --quiet --pass lib-owl-p.n3 t/*.n3
+	@ ./test.sh lib-owl-e.n3 t/*.n3
 
 test-blogic:
-	eye --nope --quiet --blogic lib-owl-p.n3 t/*.n3s
+	@ ./test.sh lib-owl-e.n3s t/*.n3s
 
 owl:
 	cp /Users/hochsten/github.com/eyereasoner/eye/reasoning/rpo/owl-*.n3 .

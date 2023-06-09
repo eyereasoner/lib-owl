@@ -1,0 +1,20 @@
+@prefix :    <http://example.org/ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+
+:HumanChild 
+    a owl:Restriction ;
+    owl:onProperty :hasParent ;
+    owl:allValuesFrom :Human .
+
+:Chelsea a :HumanChild ;
+    :hasParent :Bill , :Hillary .
+
+# test
+() log:onQuerySurface {
+    :Bill a :Human .
+    :Hillary a :Human .
+    () log:onAnswerSurface {
+        <> :is true .
+    } .
+} .
