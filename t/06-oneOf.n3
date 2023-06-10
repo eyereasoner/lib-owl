@@ -1,0 +1,24 @@
+@prefix :    <http://example.org/ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix log: <http://www.w3.org/2000/10/swap/log#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:Color a owl:Class ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:oneOf ( :Red :Green :Blue )
+    ] .
+
+:Tomato a :Fruit ;
+    :color :Red .
+
+# test
+{
+    ?X a :Fruit ;
+       :color ?C .
+    ?C a :Color .
+}
+=> 
+{
+    <> :is true .
+} .

@@ -6,10 +6,6 @@
 @prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
 @prefix dct: <http://purl.org/dc/terms/> . 
 
-<> 
-    dct:hasVersion "0.2" ;
-    dct:description "An owl-e components library in RDF Surfaces". 
-
 (_:A _:B _:C _:D) log:onNegativeSurface {
     _:A a owl:AllDifferent .
     _:A owl:members _:B .
