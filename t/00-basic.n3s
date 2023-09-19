@@ -7,7 +7,7 @@
 :hasChild owl:inverseOf :hasParent .
 
 # Test
-() log:onQuerySurface {
+() log:onQuestionSurface {
     :Mary :hasChild :Alice . 
     () log:onAnswerSurface {
         <> :is true .

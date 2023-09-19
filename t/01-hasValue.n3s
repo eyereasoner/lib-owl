@@ -10,7 +10,7 @@
 :Chelsea a :ClintonChild .
 
 # test
-() log:onQuerySurface {
+() log:onQuestionSurface {
     :Chelsea :hasParent :Clinton .
     () log:onAnswerSurface {
         <> :is true .

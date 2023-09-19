@@ -11,7 +11,7 @@
 :Jane :husband :Bill .
 
 # test
-() log:onQuerySurface {
+() log:onQuestionSurface {
     :Jane a :Woman .
     () log:onAnswerSurface {
         <> :is true .

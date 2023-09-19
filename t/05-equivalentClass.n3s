@@ -10,7 +10,7 @@
 :Akita a :Kucing .
 
 # test
-() log:onQuerySurface {
+() log:onQuestionSurface {
     :Mika a :Kucing .
     :Akita a :Cat .
     () log:onAnswerSurface {

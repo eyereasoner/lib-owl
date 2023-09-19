@@ -11,7 +11,7 @@
 :Bill a :President .
 
 # test
-() log:onQuerySurface {
+() log:onQuestionSurface {
     :Chelsea a :PresidentChild .
     () log:onAnswerSurface {
         <> :is true .

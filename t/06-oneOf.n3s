@@ -13,7 +13,7 @@
     :color :Red .
 
 # test
-(_:X _:C) log:onQuerySurface {
+(_:X _:C) log:onQuestionSurface {
     _:X a :Fruit ;
        :color _:C .
     _:C a :Color .

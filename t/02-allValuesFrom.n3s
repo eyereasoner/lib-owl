@@ -11,7 +11,7 @@
     :hasParent :Bill , :Hillary .
 
 # test
-() log:onQuerySurface {
+() log:onQuestionSurface {
     :Bill a :Human .
     :Hillary a :Human .
     () log:onAnswerSurface {
