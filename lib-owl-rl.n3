@@ -1,0 +1,115 @@
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+
+#eq-ref
+{ 
+  ?S ?P ?O.
+}
+=>
+{
+  ?S owl:sameAs ?S.
+  ?P owl:sameAs ?P.
+  ?O owl:sameAs ?O.
+}.
+
+#eq-sym
+{?A owl:sameAs ?B} => {?B owl:sameAs ?A}.
+
+#eq-trans
+{?A owl:sameAs ?B. ?B owl:sameAs ?C} => {?A owl:sameAs ?C}.
+
+#eq-rep-s
+{?A owl:sameAs ?B. ?A ?P ?O} => {?B ?P ?O}.
+
+#eq-rep-p
+{?A owl:sameAs ?B. ?S ?A ?O} => {?S ?B ?O}.
+
+#eq-rep-q
+{?A owl:sameAs ?B. ?S ?P ?A} => {?S ?P ?B}.
+
+#eq-diff1
+{?A owl:sameAs ?B. ?A owl:differentFrom ?B } => false.
+
+#eq-diff2
+{
+    ?A a owl:AllDifferent.
+    ?A owl:members ?B.
+    ?C list:in ?B.
+    ?D list:in ?B.
+    ?C log:notEqualTo ?D.
+    ?C owl:sameAs ?D.
+} => false.
+
+#eq-diff3
+{
+    ?A a owl:AllDifferent.
+    ?A owl:distinctMembers ?B.
+    ?C list:in ?B.
+    ?D list:in ?B.
+    ?C log:notEqualTo ?D.
+    ?C owl:sameAs ?D.
+} => false.
+
+#prp-domain
+{?A rdfs:domain ?B. ?X ?A ?Y} => {?X a ?B}.
+
+#prp-dom
+{?A rdfs:range ?B. ?X ?A ?Y} => {?Y a ?B}.
+    
+#prp-fp
+{?A a owl:FunctionalProperty. ?X ?A ?Y. ?X ?A ?Z} => {?Y owl:sameAs ?Z}.
+
+#prp-ifp
+{?A a owl:InverseFunctionalProperty. ?X ?A ?Z. ?Y ?A ?Z} => {?X owl:sameAs ?Y}.
+
+#prp-irp
+{?A a iwl:IrreflexiveProperty. ?X ?A ?X} => false.
+
+#prp-symp
+{?A a owl:SymmetricProperty. ?X ?A ?Y} => {?Y ?A ?X}.
+
+#prp-asyp
+{?A a owl:AsymmetricProperty. ?X ?A ?Y. ?Y ?A ?X} => false.
+
+#prp-trp
+{?A a owl:TransitiveProperty. ?X ?A ?Y. ?Y ?A ?Z} => {?X ?A ?Z}.
+
+
+#cax-sco
+{?A rdfs:subClassOf ?B. ?X a ?A} => {?X a ?B}.
+
+#cax-eqc1
+{?A owl:equivalentClass ?B. ?X a ?A} => {?X a ?B}.
+#cax-eqc2                                              
+{?A owl:equivalentClass ?B. ?X a ?B} => {?X a ?A}.
+
+#cax-dw
+{?A owl:disjointWith ?B. ?X a ?A. ?X a ?B} => false. 
+
+#cax-adc
+{
+    ?A a owl:AllDisjointClasses.
+    ?A owl:members ?B.
+    ?C list:in ?B.
+    ?D list:in ?B.
+    ?C log:notEqualTo ?D.
+    ?X a ?C.
+    ?X a ?D.
+} => false.
+
+#prp-spo2
+{?P owl:propertyChainAxiom ?L. ?L e:propertyChainExtension (?S ?O)} => {?S ?P ?O}.
+
+#prp-inv1
+{?P owl:inverseOf ?Q. ?S ?P ?O} => {?O ?Q ?S}.
+#prp-inv2                                       
+{?P owl:inverseOf ?Q. ?S ?Q ?O} => {?O ?P ?S}.
+                                       
+#cls-svf1
+{?C owl:someValuesFrom ?Y. ?C owl:onProperty ?P. ?U ?P ?V. ?V a ?Y} => {?U a ?C}.
+
+
