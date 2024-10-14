@@ -9,5 +9,5 @@ test:
 	@ ./test.sh lib-owl-e.n3 t/*.n3
 
 owl:
-	cp /Users/hochsten/github.com/eyereasoner/eye/reasoning/rpo/owl-*.n3 .
+	cp ../eye/reasoning/rpo/owl-*.n3 .
 	eye --nope --quiet --pass-all owl-*.n3 > lib-owl-e.n3
