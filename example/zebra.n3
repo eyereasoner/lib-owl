@@ -1,0 +1,791 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc11: <http://purl.org/dc/elements/1.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ns0: <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl>
+  a owl:Ontology ;
+  dc11:description """   1. There are five houses.
+   2. The Englishman lives in the red house.
+   3. The Spaniard owns the dog.
+   4. Coffee is drunk in the green house.
+   5. The Ukrainian drinks tea.
+   6. The green house is immediately to the right of the ivory house.
+   7. The Old Gold smoker owns snails.
+   8. Kools are smoked in the yellow house.
+   9. Milk is drunk in the middle house.
+  10. The Norwegian lives in the first house.
+  11. The man who smokes Chesterfields lives in the house next to the man with the fox.
+  12. Kools are smoked in a house next to the house where the horse is kept. 
+  13. The Lucky Strike smoker drinks orange juice.
+  14. The Japanese smokes Parliaments.
+  15. The Norwegian lives next to the blue house.
+
+Now, who drinks water? Who owns the zebra?
+
+In the interest of clarity, it must be added that each of the five houses is painted a different color, has a single inhabitant, and the inhabitants are of different national extractions, own different pets, drink different beverages and smoke different brands of American cigarettes. In statement 6, right refers to the reader's right."""^^xsd:string ;
+  dc11:date """Created: February 5, 2010
+Updated for compliance: November 4, 2013"""^^xsd:string ;
+  dc11:creator "Denis Ponomaryov"^^xsd:string .
+
+dc11:creator a owl:AnnotationProperty .
+dc11:date a owl:AnnotationProperty .
+dc11:description a owl:AnnotationProperty .
+<http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#drinks>
+  a owl:ObjectProperty, owl:FunctionalProperty, owl:InverseFunctionalProperty ;
+  rdfs:range <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Beverage> ;
+  rdfs:domain <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Man> .
+
+<http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#has_color>
+  a owl:ObjectProperty, owl:FunctionalProperty, owl:InverseFunctionalProperty ;
+  rdfs:range <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Color> ;
+  rdfs:domain <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#House> .
+
+<http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#lives_in>
+  a owl:ObjectProperty, owl:FunctionalProperty, owl:InverseFunctionalProperty ;
+  rdfs:range <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#House> ;
+  rdfs:domain <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Man> .
+
+<http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#owns>
+  a owl:ObjectProperty, owl:FunctionalProperty, owl:InverseFunctionalProperty ;
+  rdfs:domain <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Man> ;
+  rdfs:range <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Pet> .
+
+<http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#right_to>
+  a owl:ObjectProperty, owl:FunctionalProperty, owl:InverseFunctionalProperty ;
+  rdfs:domain <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#House> ;
+  rdfs:range <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#House> .
+
+<http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#smokes>
+  a owl:ObjectProperty, owl:FunctionalProperty, owl:InverseFunctionalProperty ;
+  rdfs:range <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Cigarette> ;
+  rdfs:domain <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Man> .
+
+<http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Beverage>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:oneOf (
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#orange_juice>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#tea>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#water>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#coffee>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#milk>
+   )
+  ] ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#drinks> ] ;
+    owl:someValuesFrom <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Man>
+  ] .
+
+<http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Cigarette>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:oneOf (
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Kools>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Lucky_Strike>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Parliaments>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Chesterfields>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Old_Gold>
+   )
+  ] ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#smokes> ] ;
+    owl:someValuesFrom <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Man>
+  ] .
+
+<http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Color>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:oneOf (
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#green>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#red>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#blue>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#yellow>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#ivory>
+   )
+  ] ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#has_color> ] ;
+    owl:someValuesFrom <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#House>
+  ] .
+
+<http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#House>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:oneOf (
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#house-2>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#house-3>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#house-1>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#house-4>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#house-5>
+   )
+  ] ;
+  rdfs:subClassOf [
+    a owl:Class ;
+    owl:intersectionOf (
+     _:genid37
+     _:genid39
+   )
+  ] .
+
+<http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Man>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:oneOf (
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Ukrainian>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Spaniard>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Norwegian>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Englishman>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Japanese>
+   )
+  ] ;
+  rdfs:subClassOf [
+    a owl:Class ;
+    owl:intersectionOf (
+     _:genid49
+     _:genid51
+     _:genid53
+     _:genid55
+   )
+  ] .
+
+<http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Pet>
+  a owl:Class ;
+  owl:equivalentClass [
+    a owl:Class ;
+    owl:oneOf (
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#zebra>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#horse>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#snails>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#dog>
+     <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#fox>
+   )
+  ] ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#owns> ] ;
+    owl:someValuesFrom <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Man>
+  ] .
+
+owl:Nothing a owl:Class .
+<http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Chesterfields>
+  a owl:Thing, owl:NamedIndividual, [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#smokes> ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#lives_in> ;
+      owl:someValuesFrom [
+        a owl:Class ;
+        owl:unionOf (
+         _:genid69
+         _:genid74
+       )
+      ]
+    ]
+  ] ;
+  rdfs:comment "11. The man who smokes Chesterfields lives in the house next to the man with the fox." .
+
+<http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Englishman>
+  a owl:Thing, owl:NamedIndividual, [
+    a owl:Restriction ;
+    owl:onProperty <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#lives_in> ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#has_color> ;
+      owl:hasValue <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#red>
+    ]
+  ] ;
+  rdfs:comment "2. The Englishman lives in the red house." .
+
+<http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#Japanese>
+  a owl:Thing, owl:NamedIndividual ;
+  rdfs:comment "14. The Japanese smokes Parliaments." ;
+  ns0:smokes ns0:Parliaments .
+
+ns0:Kools
+  a owl:Thing, owl:NamedIndividual, [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:smokes ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:lives_in ;
+      owl:someValuesFrom [
+        a owl:Restriction ;
+        owl:onProperty ns0:has_color ;
+        owl:hasValue ns0:yellow
+      ]
+    ]
+  ], [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:smokes ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:lives_in ;
+      owl:someValuesFrom [
+        a owl:Class ;
+        owl:unionOf (
+         _:genid110
+         _:genid115
+       )
+      ]
+    ]
+  ] ;
+  rdfs:comment """12. Kools are smoked in a house next to the house where the horse is kept.    
+8. Kools are smoked in the yellow house.""" .
+
+ns0:Lucky_Strike
+  a owl:Thing, owl:NamedIndividual, [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:smokes ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:drinks ;
+      owl:hasValue ns0:orange_juice
+    ]
+  ] ;
+  rdfs:comment "13. The Lucky Strike smoker drinks orange juice." .
+
+ns0:Norwegian
+  a owl:Thing, owl:NamedIndividual, [
+    a owl:Restriction ;
+    owl:onProperty ns0:lives_in ;
+    owl:someValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       _:genid151
+       _:genid154
+     )
+    ]
+  ] ;
+  rdfs:comment """10. The Norwegian lives in the first house.
+15. The Norwegian lives next to the blue house.""" ;
+  ns0:lives_in ns0:house-1 .
+
+ns0:Old_Gold
+  a owl:Thing, owl:NamedIndividual, [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:smokes ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:owns ;
+      owl:hasValue ns0:snails
+    ]
+  ] ;
+  rdfs:comment " 7. The Old Gold smoker owns snails." .
+
+ns0:Parliaments a owl:Thing, owl:NamedIndividual .
+ns0:Spaniard
+  a owl:Thing, owl:NamedIndividual ;
+  rdfs:comment "3. The Spaniard owns the dog." ;
+  ns0:owns ns0:dog .
+
+ns0:Ukrainian
+  a owl:Thing, owl:NamedIndividual ;
+  rdfs:comment "5. The Ukrainian drinks tea." ;
+  ns0:drinks ns0:tea .
+
+ns0:blue a owl:Thing, owl:NamedIndividual .
+ns0:coffee
+  a owl:Thing, owl:NamedIndividual, [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:drinks ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:lives_in ;
+      owl:someValuesFrom [
+        a owl:Restriction ;
+        owl:onProperty ns0:has_color ;
+        owl:hasValue ns0:green
+      ]
+    ]
+  ] ;
+  rdfs:comment "4. Coffee is drunk in the green house." .
+
+ns0:dog a owl:Thing, owl:NamedIndividual .
+ns0:fox a owl:Thing, owl:NamedIndividual .
+ns0:green
+  a owl:Thing, owl:NamedIndividual, [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:has_color ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:right_to ;
+      owl:someValuesFrom [
+        a owl:Restriction ;
+        owl:onProperty ns0:has_color ;
+        owl:hasValue ns0:ivory
+      ]
+    ]
+  ] ;
+  rdfs:comment "6. The green house is immediately to the right of the ivory house." .
+
+ns0:horse a owl:Thing, owl:NamedIndividual .
+ns0:house-1 a owl:Thing, owl:NamedIndividual, [
+    a owl:Restriction ;
+    owl:onProperty ns0:right_to ;
+    owl:allValuesFrom owl:Nothing
+  ] .
+ns0:house-2
+  a owl:Thing, owl:NamedIndividual ;
+  ns0:right_to ns0:house-1 .
+
+ns0:house-3
+  a owl:Thing, owl:NamedIndividual ;
+  ns0:right_to ns0:house-2 .
+
+ns0:house-4
+  a owl:Thing, owl:NamedIndividual ;
+  ns0:right_to ns0:house-3 .
+
+ns0:house-5
+  a owl:Thing, owl:NamedIndividual, [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:right_to ] ;
+    owl:allValuesFrom owl:Nothing
+  ] ;
+  ns0:right_to ns0:house-4 .
+
+ns0:ivory a owl:Thing, owl:NamedIndividual .
+ns0:milk
+  a owl:Thing, owl:NamedIndividual, [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:drinks ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:lives_in ;
+      owl:hasValue ns0:house-3
+    ]
+  ] ;
+  rdfs:comment "9. Milk is drunk in the middle house." .
+
+ns0:orange_juice a owl:Thing, owl:NamedIndividual .
+ns0:red a owl:Thing, owl:NamedIndividual .
+ns0:snails a owl:Thing, owl:NamedIndividual .
+ns0:tea a owl:Thing, owl:NamedIndividual .
+ns0:water a owl:Thing, owl:NamedIndividual .
+ns0:yellow a owl:Thing, owl:NamedIndividual .
+ns0:zebra a owl:Thing, owl:NamedIndividual .
+[] owl:inverseOf ns0:drinks .
+[] owl:inverseOf ns0:has_color .
+[] owl:inverseOf ns0:lives_in .
+[] owl:inverseOf ns0:right_to .
+[] owl:inverseOf ns0:smokes .
+_:genid37
+  a owl:Restriction ;
+  owl:onProperty ns0:has_color ;
+  owl:someValuesFrom ns0:Color .
+
+_:genid39
+  a owl:Restriction ;
+  owl:onProperty [ owl:inverseOf ns0:lives_in ] ;
+  owl:someValuesFrom ns0:Man .
+
+_:genid49
+  a owl:Restriction ;
+  owl:onProperty ns0:drinks ;
+  owl:someValuesFrom ns0:Beverage .
+
+_:genid51
+  a owl:Restriction ;
+  owl:onProperty ns0:lives_in ;
+  owl:someValuesFrom ns0:House .
+
+_:genid53
+  a owl:Restriction ;
+  owl:onProperty ns0:owns ;
+  owl:someValuesFrom ns0:Pet .
+
+_:genid55
+  a owl:Restriction ;
+  owl:onProperty ns0:smokes ;
+  owl:someValuesFrom ns0:Cigarette .
+
+_:genid69
+  a owl:Restriction ;
+  owl:onProperty ns0:right_to ;
+  owl:someValuesFrom [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:lives_in ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:owns ;
+      owl:hasValue ns0:fox
+    ]
+  ] .
+
+_:genid74
+  a owl:Restriction ;
+  owl:onProperty [ owl:inverseOf ns0:right_to ] ;
+  owl:someValuesFrom [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:lives_in ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:owns ;
+      owl:hasValue ns0:fox
+    ]
+  ] .
+
+[]
+  a owl:Axiom ;
+  rdfs:comment "11. The man who smokes Chesterfields lives in the house next to the man with the fox."^^xsd:string ;
+  owl:annotatedSource ns0:Chesterfields ;
+  owl:annotatedProperty rdf:type ;
+  owl:annotatedTarget [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:smokes ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:lives_in ;
+      owl:someValuesFrom [
+        a owl:Class ;
+        owl:unionOf (
+         _:genid85
+         _:genid90
+       )
+      ]
+    ]
+  ] .
+
+_:genid85
+  a owl:Restriction ;
+  owl:onProperty ns0:right_to ;
+  owl:someValuesFrom [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:lives_in ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:owns ;
+      owl:hasValue ns0:fox
+    ]
+  ] .
+
+_:genid90
+  a owl:Restriction ;
+  owl:onProperty [ owl:inverseOf ns0:right_to ] ;
+  owl:someValuesFrom [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:lives_in ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:owns ;
+      owl:hasValue ns0:fox
+    ]
+  ] .
+
+[]
+  a owl:Axiom ;
+  rdfs:comment "2. The Englishman lives in the red house."^^xsd:string ;
+  owl:annotatedSource ns0:Englishman ;
+  owl:annotatedProperty rdf:type ;
+  owl:annotatedTarget [
+    a owl:Restriction ;
+    owl:onProperty ns0:lives_in ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:has_color ;
+      owl:hasValue ns0:red
+    ]
+  ] .
+
+[]
+  a owl:Axiom ;
+  rdfs:comment "14. The Japanese smokes Parliaments."^^xsd:string ;
+  owl:annotatedSource ns0:Japanese ;
+  owl:annotatedTarget ns0:Parliaments ;
+  owl:annotatedProperty ns0:smokes .
+
+_:genid110
+  a owl:Restriction ;
+  owl:onProperty ns0:right_to ;
+  owl:someValuesFrom [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:lives_in ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:owns ;
+      owl:hasValue ns0:horse
+    ]
+  ] .
+
+_:genid115
+  a owl:Restriction ;
+  owl:onProperty [ owl:inverseOf ns0:right_to ] ;
+  owl:someValuesFrom [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:lives_in ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:owns ;
+      owl:hasValue ns0:horse
+    ]
+  ] .
+
+[]
+  a owl:Axiom ;
+  rdfs:comment "8. Kools are smoked in the yellow house."^^xsd:string ;
+  owl:annotatedSource ns0:Kools ;
+  owl:annotatedProperty rdf:type ;
+  owl:annotatedTarget [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:smokes ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:lives_in ;
+      owl:someValuesFrom [
+        a owl:Restriction ;
+        owl:onProperty ns0:has_color ;
+        owl:hasValue ns0:yellow
+      ]
+    ]
+  ] .
+
+[]
+  a owl:Axiom ;
+  rdfs:comment "12. Kools are smoked in the house next to the house where the horse is kept."^^xsd:string ;
+  owl:annotatedSource ns0:Kools ;
+  owl:annotatedProperty rdf:type ;
+  owl:annotatedTarget [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:smokes ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:lives_in ;
+      owl:someValuesFrom [
+        a owl:Class ;
+        owl:unionOf (
+         _:genid131
+         _:genid136
+       )
+      ]
+    ]
+  ] .
+
+_:genid131
+  a owl:Restriction ;
+  owl:onProperty ns0:right_to ;
+  owl:someValuesFrom [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:lives_in ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:owns ;
+      owl:hasValue ns0:horse
+    ]
+  ] .
+
+_:genid136
+  a owl:Restriction ;
+  owl:onProperty [ owl:inverseOf ns0:right_to ] ;
+  owl:someValuesFrom [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:lives_in ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:owns ;
+      owl:hasValue ns0:horse
+    ]
+  ] .
+
+[]
+  a owl:Axiom ;
+  rdfs:comment "13. The Lucky Strike smoker drinks orange juice."^^xsd:string ;
+  owl:annotatedSource ns0:Lucky_Strike ;
+  owl:annotatedProperty rdf:type ;
+  owl:annotatedTarget [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:smokes ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:drinks ;
+      owl:hasValue ns0:orange_juice
+    ]
+  ] .
+
+_:genid151
+  a owl:Restriction ;
+  owl:onProperty ns0:right_to ;
+  owl:someValuesFrom [
+    a owl:Restriction ;
+    owl:onProperty ns0:has_color ;
+    owl:hasValue ns0:blue
+  ] .
+
+_:genid154
+  a owl:Restriction ;
+  owl:onProperty [ owl:inverseOf ns0:right_to ] ;
+  owl:someValuesFrom [
+    a owl:Restriction ;
+    owl:onProperty ns0:has_color ;
+    owl:hasValue ns0:blue
+  ] .
+
+[]
+  a owl:Axiom ;
+  rdfs:comment "10. The Norwegian lives in the first house."^^xsd:string ;
+  owl:annotatedSource ns0:Norwegian ;
+  owl:annotatedTarget ns0:house-1 ;
+  owl:annotatedProperty ns0:lives_in .
+
+[]
+  a owl:Axiom ;
+  rdfs:comment "15. The Norwegian lives next to the blue house."^^xsd:string ;
+  owl:annotatedSource ns0:Norwegian ;
+  owl:annotatedProperty rdf:type ;
+  owl:annotatedTarget [
+    a owl:Restriction ;
+    owl:onProperty ns0:lives_in ;
+    owl:someValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+       _:genid162
+       _:genid165
+     )
+    ]
+  ] .
+
+_:genid162
+  a owl:Restriction ;
+  owl:onProperty ns0:right_to ;
+  owl:someValuesFrom [
+    a owl:Restriction ;
+    owl:onProperty ns0:has_color ;
+    owl:hasValue ns0:blue
+  ] .
+
+_:genid165
+  a owl:Restriction ;
+  owl:onProperty [ owl:inverseOf ns0:right_to ] ;
+  owl:someValuesFrom [
+    a owl:Restriction ;
+    owl:onProperty ns0:has_color ;
+    owl:hasValue ns0:blue
+  ] .
+
+[]
+  a owl:Axiom ;
+  rdfs:comment "7. The Old Gold smoker owns snails."^^xsd:string ;
+  owl:annotatedSource ns0:Old_Gold ;
+  owl:annotatedProperty rdf:type ;
+  owl:annotatedTarget [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:smokes ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:owns ;
+      owl:hasValue ns0:snails
+    ]
+  ] .
+
+[]
+  a owl:Axiom ;
+  rdfs:comment "3. The Spaniard owns the dog."^^xsd:string ;
+  owl:annotatedSource ns0:Spaniard ;
+  owl:annotatedTarget ns0:dog ;
+  owl:annotatedProperty ns0:owns .
+
+[]
+  a owl:Axiom ;
+  rdfs:comment "5. The Ukrainian drinks tea."^^xsd:string ;
+  owl:annotatedSource ns0:Ukrainian ;
+  owl:annotatedProperty ns0:drinks ;
+  owl:annotatedTarget ns0:tea .
+
+[]
+  a owl:Axiom ;
+  rdfs:comment "4. Coffee is drunk in the green house."^^xsd:string ;
+  owl:annotatedSource ns0:coffee ;
+  owl:annotatedProperty rdf:type ;
+  owl:annotatedTarget [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:drinks ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:lives_in ;
+      owl:someValuesFrom [
+        a owl:Restriction ;
+        owl:onProperty ns0:has_color ;
+        owl:hasValue ns0:green
+      ]
+    ]
+  ] .
+
+[]
+  a owl:Axiom ;
+  rdfs:comment "6. The green house is immediately to the right of the ivory house."^^xsd:string ;
+  owl:annotatedSource ns0:green ;
+  owl:annotatedProperty rdf:type ;
+  owl:annotatedTarget [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:has_color ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:right_to ;
+      owl:someValuesFrom [
+        a owl:Restriction ;
+        owl:onProperty ns0:has_color ;
+        owl:hasValue ns0:ivory
+      ]
+    ]
+  ] .
+
+[]
+  a owl:Axiom ;
+  rdfs:comment "9. Milk is drunk in the middle house."^^xsd:string ;
+  owl:annotatedSource ns0:milk ;
+  owl:annotatedProperty rdf:type ;
+  owl:annotatedTarget [
+    a owl:Restriction ;
+    owl:onProperty [ owl:inverseOf ns0:drinks ] ;
+    owl:someValuesFrom [
+      a owl:Restriction ;
+      owl:onProperty ns0:lives_in ;
+      owl:hasValue ns0:house-3
+    ]
+  ] .
+
+[]
+  a owl:AllDifferent ;
+  owl:distinctMembers (
+   ns0:Chesterfields
+   ns0:Englishman
+   ns0:Japanese
+   ns0:Kools
+   ns0:Lucky_Strike
+   ns0:Norwegian
+   ns0:Old_Gold
+   ns0:Parliaments
+   ns0:Spaniard
+   ns0:Ukrainian
+   ns0:blue
+   ns0:coffee
+   ns0:dog
+   ns0:fox
+   ns0:green
+   ns0:horse
+   ns0:house-1
+   ns0:house-2
+   ns0:house-3
+   ns0:house-4
+   ns0:house-5
+   ns0:ivory
+   ns0:milk
+   ns0:orange_juice
+   ns0:red
+   ns0:snails
+   ns0:tea
+   ns0:water
+   ns0:yellow
+   ns0:zebra
+ ) .

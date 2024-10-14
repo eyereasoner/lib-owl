@@ -1,0 +1,9 @@
+@prefix : <http://persons.iis.nsk.su/files/persons/pages/einsteins_riddle.owl#> .
+
+{
+    ?Who :drinks ?What .
+}
+=>
+{
+    ?Who :drinks ?What .
+} .

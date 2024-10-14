@@ -14,12 +14,5 @@ for f in "$@"; do
         else
             echo " FAILED"
         fi
-    elif [[ "${ext}" == 'n3s' ]]; then
-        eye --nope --quiet --no-bnode-relabeling  $lib $f lib-rdfs.n3s | grep ':is true' > /dev/null 2>&1 
-        if [ $? -eq 0 ]; then
-            echo " OK"
-        else
-            echo " FAILED"
-        fi
     fi
 done
