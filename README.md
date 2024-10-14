@@ -32,6 +32,10 @@ eye --nope --quiet --pass lib-owl-p.n3 your-file.n3
 
 # Vocabulary
 
+## lib-owl-rl
+
+An annotated version of all OWL-RL inference rules.
+
 ## lib-owl-p
 
 **Inference rules for properties**
