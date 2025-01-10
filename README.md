@@ -2,7 +2,7 @@
 
 OWL-P - a lightweight subcollection of the most used OWL vocabulary terms
 
-Ref. Tomaszuki, D. : Inference rules for OWL-P in N3Logic. Communication Papers of the Federated Conference on Computer Science and Information Systems (2018) DOI: [10.15439/2018F102](https://annals-csis.org/Volume_17/drp/pdf/102.pdf)
+Ref. Tomaszuk, D. : Inference rules for OWL-P in N3Logic. Communication Papers of the Federated Conference on Computer Science and Information Systems (2018) DOI: [10.15439/2018F102](https://annals-csis.org/Volume_17/drp/pdf/102.pdf)
 
 # Synopsis
 
